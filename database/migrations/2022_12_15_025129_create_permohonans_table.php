@@ -15,6 +15,7 @@ class CreatePermohonansTable extends Migration
     {
         Schema::create('permohonans', function (Blueprint $table) {
             $table->id();
+            $table->string('penanggung_jawab');
             $table->string('kegiatan');
             $table->text('lokasi');
             $table->string('tgl_mulai');

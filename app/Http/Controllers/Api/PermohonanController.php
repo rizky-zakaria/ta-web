@@ -3,7 +3,9 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Models\Hasil;
 use App\Models\Permohonan;
+use App\Models\Verifikas;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
 
@@ -30,7 +32,7 @@ class PermohonanController extends Controller
             return response()->json([
                 'success' => 200,
                 'message' => 'Successfuly',
-                'data' => $data
+                'data' => [$data]
             ]);
         } else {
             return response()->json([
@@ -55,7 +57,7 @@ class PermohonanController extends Controller
             return response()->json([
                 'success' => 200,
                 'message' => 'Successfuly',
-                'data' => $post
+                'data' => [$post]
             ]);
         } else {
             return response()->json([
@@ -73,14 +75,14 @@ class PermohonanController extends Controller
         $imageNameKk = 'KK' . date('dmYHis') . rand(0, 9999) . '.' . 'png';
         $save = File::put(public_path() . '/uploads/img/' . $imageNameKk, base64_decode($imageKk));
         $post = Permohonan::find($request->id);
-        $post->ktp = $imageNameKk;
+        $post->kk = $imageNameKk;
         $post->update();
 
         if ($post) {
             return response()->json([
                 'success' => 200,
                 'message' => 'Successfuly',
-                'data' => $post
+                'data' => [$post]
             ]);
         } else {
             return response()->json([
@@ -98,8 +100,35 @@ class PermohonanController extends Controller
         $imageNameSp = 'SP' . date('dmYHis') . rand(0, 9999) . '.' . 'png';
         $save = File::put(public_path() . '/uploads/img/' . $imageNameSp, base64_decode($imageSp));
         $post = Permohonan::find($request->id);
-        $post->ktp = $imageNameSp;
+        $post->sp = $imageNameSp;
         $post->update();
+
+        if ($post) {
+            return response()->json([
+                'success' => 200,
+                'message' => 'Successfuly',
+                'data' => [$post]
+            ]);
+        } else {
+            return response()->json([
+                'success' => 500,
+                'message' => "can't upload this file"
+            ]);
+        }
+    }
+
+    public function postVerifikasi(Request $request)
+    {
+        $imageVer = $request->gambar;
+        $imageVer = str_replace('data:image/png;base64,', '', $imageVer);
+        $imageVer = str_replace(' ', '+', $imageVer);
+        $imageVerifikasi = 'VER' . date('dmYHis') . rand(0, 9999) . '.' . 'png';
+        $save = File::put(public_path() . '/uploads/img/' . $imageVerifikasi, base64_decode($imageVer));
+        $post = new Verifikas;
+        $post->gambar = $imageVerifikasi;
+        $post->keterangan = $request->keterangan;
+        $post->permohonan_id = $request->id;
+        $post->save();
 
         if ($post) {
             return response()->json([
@@ -128,6 +157,40 @@ class PermohonanController extends Controller
             return response()->json([
                 'success' => 500,
                 'message' => "can't upload this file"
+            ]);
+        }
+    }
+
+    public function getPermohonanPetugas(Request $request)
+    {
+        $data = Permohonan::where('petugas_id', $request->id)->get();
+        if ($data) {
+            return response()->json([
+                'success' => 200,
+                'message' => 'Successfuly',
+                'data' => $data
+            ]);
+        } else {
+            return response()->json([
+                'success' => 500,
+                'message' => "can't upload this file"
+            ]);
+        }
+    }
+
+    public function getFile(Request $request)
+    {
+        $data = Hasil::where('permohonan_id', $request->id)->first();
+        if ($data) {
+            return response()->json([
+                'success' => true,
+                'message' => 'berhasil mendapatkan data',
+                'data' => $data
+            ]);
+        } else {
+            return response()->json([
+                'success' => false,
+                'message' => 'gagal mendapatkan data'
             ]);
         }
     }

@@ -2,7 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
+use RealRashid\SweetAlert\Facades\Alert;
 use Symfony\Component\HttpKernel\Profiler\Profile;
 
 class ProfilController extends Controller
@@ -13,14 +17,14 @@ class ProfilController extends Controller
      * @return \Illuminate\Http\Response
      */
 
-     public function __construct()
-    
-     {
-        $this->modul ='profil';
-     }
+    public function __construct()
+
+    {
+        $this->modul = 'profil';
+    }
     public function index()
     {
-        $modul =$this->modul;
+        $modul = $this->modul;
         return view('profil.index', compact('modul'));
     }
 
@@ -76,7 +80,16 @@ class ProfilController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        if ($request->password == $request->konfirmasi) {
+            $data = User::find($id);
+            $data->password = Hash::make($request->password);
+            $data->update();
+            Alert::success('Berhasil', 'Berhasil merubah password');
+            return redirect(route('profil.index'));
+        } else {
+            Alert::wrong('Gagal', 'Password Tidak Sama!');
+            return redirect(route('profil.index'));
+        }
     }
 
     /**

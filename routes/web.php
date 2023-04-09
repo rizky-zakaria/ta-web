@@ -24,6 +24,10 @@ Auth::routes();
 Route::middleware(['auth'])->group(function () {
     Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
     Route::resource('permohonan', PermohonanController::class);
+    Route::get('permohonan/petugas/{id}', [PermohonanController::class, 'setPetugas']);
+    Route::post('permohonan/set-petugas/{id}', [PermohonanController::class, 'updatePetugas']);
+    Route::get('permohonan/setujui/{id}', [PermohonanController::class, 'setujui']);
+    Route::put('permohonan/berkas-post/{id}', [PermohonanController::class, 'postBerkas']);
     Route::resource('pengguna', PenggunaController::class);
     Route::resource('profil', ProfilController::class);
 });

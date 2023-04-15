@@ -34,19 +34,77 @@
                     <td style="vertical-align: top">Lampiran</td>
                     <td style="vertical-align: top">:</td>
                     <td>
-                        <a href="{{ asset('uploads/img/' . $data->ktp) }}">
-                            <img src="{{ asset('uploads/img/' . $data->ktp) }}" width="200px">
-                        </a>
+                        <div class="row">
+                            <div class="col">
+                                <a href="{{ asset('uploads/img/' . $data->ktp) }}">
+                                    <img src="{{ asset('uploads/img/' . $data->ktp) }}" width="200px">
+                                </a>
+                            </div>
+                            <div class="col">
+                                @if ($data->val_ktp === '-')
+                                    <a href="" class="btn btn-sm btn-success">
+                                        <i class="fas fa-check"></i>
+                                    </a>
+                                    <a href="" class="btn btn-sm btn-danger">
+                                        <i class="fas fa-ban"></i>
+                                    </a>
+                                @elseif($data->val_ktp === 'disetujui')
+                                    <i class="fas fa-check" style="color: rgb(55, 228, 64);"></i>
+                                @else
+                                    {{-- <i>x</i> --}}
+                                    <i style="color: rgb(241, 1, 1);" class="fas fa-ban"></i>
+                                @endif
+                            </div>
+                        </div>
                         <br>
                         <br>
-                        <a href="{{ asset('uploads/img/' . $data->kk) }}">
-                            <img src="{{ asset('uploads/img/' . $data->kk) }}" width="200px">
-                        </a>
+                        <div class="row">
+                            <div class="col">
+                                <a href="{{ asset('uploads/img/' . $data->kk) }}">
+                                    <img src="{{ asset('uploads/img/' . $data->kk) }}" width="200px">
+                                </a>
+                            </div>
+                            <div class="col">
+                                @if ($data->val_ktp === '-')
+                                    <a href="" class="btn btn-sm btn-success">
+                                        <i class="fas fa-check"></i>
+                                    </a>
+                                    <a href="" class="btn btn-sm btn-danger">
+                                        <i class="fas fa-ban"></i>
+                                    </a>
+                                @elseif($data->val_ktp === 'disetujui')
+                                    <i class="fas fa-check" style="color: rgb(55, 228, 64);"></i>
+                                @else
+                                    {{-- <i>x</i> --}}
+                                    <i style="color: rgb(241, 1, 1);" class="fas fa-ban"></i>
+                                @endif
+                            </div>
+                        </div>
+
                         <br>
                         <br>
-                        <a href="{{ asset('uploads/img/' . $data->sp) }}">
-                            <img src="{{ asset('uploads/img/' . $data->sp) }}" width="200px">
-                        </a>
+                        <div class="row">
+                            <div class="col">
+                                <a href="{{ asset('uploads/img/' . $data->sp) }}">
+                                    <img src="{{ asset('uploads/img/' . $data->sp) }}" width="200px">
+                                </a>
+                            </div>
+                            <div class="col">
+                                @if ($data->val_ktp === '-')
+                                    <a href="" class="btn btn-sm btn-success">
+                                        <i class="fas fa-check"></i>
+                                    </a>
+                                    <a href="" class="btn btn-sm btn-danger">
+                                        <i class="fas fa-ban"></i>
+                                    </a>
+                                @elseif($data->val_ktp === 'disetujui')
+                                    <i class="fas fa-check" style="color: rgb(55, 228, 64);"></i>
+                                @else
+                                    {{-- <i>x</i> --}}
+                                    <i style="color: rgb(241, 1, 1);" class="fas fa-ban"></i>
+                                @endif
+                            </div>
+                        </div>
                     </td>
                 </tr>
                 <tr>

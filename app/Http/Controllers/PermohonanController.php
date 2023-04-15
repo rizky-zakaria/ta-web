@@ -83,8 +83,10 @@ class PermohonanController extends Controller
     {
         $modul = $this->modul;
         $data = Permohonan::join('users', 'users.id', '=', 'permohonans.petugas_id')
+            ->join('validasis', 'validasis.permohonan_id', '=', 'permohonans.id')
             ->where('permohonans.id', $id)
-            ->first(['permohonans.*', 'users.name']);
+            ->first(['permohonans.*', 'users.name', 'validasis.val_ktp', 'validasis.val_kk', 'validasis.val_sp']);
+        // dd($data);
         $hasil = Hasil::where('permohonan_id', $id)->first();
         // dd($data);
         if ($data->petugas_id == 1) {

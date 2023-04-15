@@ -82,11 +82,12 @@ class PermohonanController extends Controller
     public function show($id)
     {
         $modul = $this->modul;
+        // dd($id);
+
         $data = Permohonan::join('users', 'users.id', '=', 'permohonans.petugas_id')
             ->where('permohonans.id', $id)
             ->first(['permohonans.*', 'users.name']);
         $hasil = Hasil::where('permohonan_id', $id)->first();
-        // dd($data);
         if ($data->petugas_id == 1) {
             return redirect(url('permohonan/petugas/' . $id));
         } else {
@@ -99,6 +100,20 @@ class PermohonanController extends Controller
     {
         $data = Permohonan::find($id);
         $data->status = 'disetujui';
+        $data->update();
+        if ($data) {
+            Alert::success('Berhasil', 'Berhasil menyetujui permohonan');
+        } else {
+            Alert::success('Berhasil', 'Berhasil menyetujui permohonan');
+        }
+
+        return redirect(route('permohonan.index'));
+    }
+
+    public function tolak($id)
+    {
+        $data = Permohonan::find($id);
+        $data->status = 'ditolak';
         $data->update();
         if ($data) {
             Alert::success('Berhasil', 'Berhasil menyetujui permohonan');

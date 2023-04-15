@@ -4,6 +4,7 @@
         <div class="card-header">
             DETAIL PERMOHONAN
             @if (isset($ver->gambar))
+                <a href="{{ url('permohonan/tolak/' . $id) }}" class="btn btn-sm btn-danger ml-2 float-right">Tolak</a>
                 <a href="{{ url('permohonan/setujui/' . $id) }}" class="btn btn-sm btn-success float-right">Setujui</a>
             @endif
         </div>

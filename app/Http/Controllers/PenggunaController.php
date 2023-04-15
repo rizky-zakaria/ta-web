@@ -2,9 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Permohonan;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use RealRashid\SweetAlert\Facades\Alert;
+// use Alert;
 
 class PenggunaController extends Controller
 {
@@ -103,8 +106,18 @@ class PenggunaController extends Controller
      */
     public function destroy($id)
     {
-        $hapus = User::find($id);
-        $hapus->delete();
-        return redirect(route('pengguna.index'));
+        if($id != 1){
+            $cek = Permohonan::where('petugas_id', $id)->get();
+            if(isset($cek[0]->id)){
+                return redirect(route('pengguna.index'));
+            }else{
+                // dd($cek);
+                $hapus = User::find($id);
+                $hapus->delete();
+                return redirect(route('pengguna.index'));
+            }
+        }else{
+            return redirect(route('pengguna.index'));
+        }
     }
 }

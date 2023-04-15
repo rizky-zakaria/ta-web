@@ -27,6 +27,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('permohonan/petugas/{id}', [PermohonanController::class, 'setPetugas']);
     Route::post('permohonan/set-petugas/{id}', [PermohonanController::class, 'updatePetugas']);
     Route::get('permohonan/setujui/{id}', [PermohonanController::class, 'setujui']);
+    Route::get('permohonan/tolak/{id}', [PermohonanController::class, 'tolak']);
     Route::put('permohonan/berkas-post/{id}', [PermohonanController::class, 'postBerkas']);
     Route::resource('pengguna', PenggunaController::class);
     Route::resource('profil', ProfilController::class);

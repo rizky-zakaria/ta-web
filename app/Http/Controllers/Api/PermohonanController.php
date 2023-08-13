@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use App\Models\Hasil;
 use App\Models\Permohonan;
+use App\Models\Validasi;
 use App\Models\Verifikas;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
@@ -26,6 +27,13 @@ class PermohonanController extends Controller
             'kk' => '-',
             'sp' => '-',
             'status' => 'diajukan'
+        ]);
+
+        $verifikasi = Validasi::create([
+            'permohonan_id' => $data->id,
+            'val_kk' => '-',
+            'val_ktp' => '-',
+            'val_sp' => '-'
         ]);
 
         if ($data) {

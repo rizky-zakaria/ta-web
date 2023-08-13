@@ -39,6 +39,7 @@ return array(
     'App\\Models\\Permohonan' => $baseDir . '/app/Models/Permohonan.php',
     'App\\Models\\Signature' => $baseDir . '/app/Models/Signature.php',
     'App\\Models\\User' => $baseDir . '/app/Models/User.php',
+    'App\\Models\\Validasi' => $baseDir . '/app/Models/Validasi.php',
     'App\\Models\\Verifikas' => $baseDir . '/app/Models/Verifikas.php',
     'App\\Providers\\AppServiceProvider' => $baseDir . '/app/Providers/AppServiceProvider.php',
     'App\\Providers\\AuthServiceProvider' => $baseDir . '/app/Providers/AuthServiceProvider.php',

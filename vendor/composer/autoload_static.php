@@ -582,6 +582,7 @@ class ComposerStaticIniteb76ea12a95c1f2c089b215aa894db8e
         'App\\Models\\Permohonan' => __DIR__ . '/../..' . '/app/Models/Permohonan.php',
         'App\\Models\\Signature' => __DIR__ . '/../..' . '/app/Models/Signature.php',
         'App\\Models\\User' => __DIR__ . '/../..' . '/app/Models/User.php',
+        'App\\Models\\Validasi' => __DIR__ . '/../..' . '/app/Models/Validasi.php',
         'App\\Models\\Verifikas' => __DIR__ . '/../..' . '/app/Models/Verifikas.php',
         'App\\Providers\\AppServiceProvider' => __DIR__ . '/../..' . '/app/Providers/AppServiceProvider.php',
         'App\\Providers\\AuthServiceProvider' => __DIR__ . '/../..' . '/app/Providers/AuthServiceProvider.php',
